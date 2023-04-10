@@ -5,33 +5,33 @@ using Microsoft.Extensions.Configuration;
 
 namespace FeatureFlagDemo;
 
-public static class CustomConfigurationExtensions
+public static class AwsAppConfigExtensions
 {
-    public static IConfigurationBuilder AddCustomAppConfiguration(this IConfigurationBuilder builder)
+    public static IConfigurationBuilder AddAwsAppConfig(this IConfigurationBuilder builder)
     {
         // Create and configure your custom configuration source here
-        var source = new CustomConfigurationSource();
+        var source = new AwsAppConfigSource();
         // Add the custom configuration source to the builder
         builder.Add(source);
         return builder;
     }
 }
 
-public class CustomConfigurationSource : IConfigurationSource
+public class AwsAppConfigSource : IConfigurationSource
 {
     public IConfigurationProvider Build(IConfigurationBuilder builder)
     {
         // Create and configure your custom configuration provider here
-        var provider = new CustomConfigurationProvider();
+        var provider = new AwsAppConfigProvider();
         return provider;
     }
 }
 
-public class CustomConfigurationProvider : ConfigurationProvider 
+public class AwsAppConfigProvider : ConfigurationProvider 
 {
     private readonly Timer _timer;
     
-    public CustomConfigurationProvider() 
+    public AwsAppConfigProvider() 
     {
         _timer = new Timer(OnTimerElapsed, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
     }
