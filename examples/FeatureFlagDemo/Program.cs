@@ -33,6 +33,8 @@ namespace FeatureFlagDemo
                             o.Select(KeyFilter.Any);
 
                             o.UseFeatureFlags();
+                            
+                            o.ConfigureRefresh(x => x.Register("x"));
                         });
                     }
                 })
